@@ -1,5 +1,6 @@
 
 const vscode = require('vscode');
+const langOptions = require('./languageOptions');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -33,8 +34,7 @@ function activate(context) {
 	context.subscriptions.push(breakCmd);
 	const lang = commands.registerCommand('extension.ssml-lang', function () {
 		vscode.window.showInformationMessage('Lang');
-		const options = ['en-US', 'fr-FR', 'ru-RU', 'es-MX'];
-		presentOptions(options, function({ selection, quickPick }) {
+		presentOptions(langOptions, function({ selection, quickPick }) {
 			surroundWith(`<lang xml:lang="${selection}">`, `</lang>`);
 			quickPick.hide();
 		});
