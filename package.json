@@ -1,0 +1,58 @@
+{
+	"name": "ssml-tags",
+	"displayName": "SSML Tags",
+	"description": "SSML Tags helper",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.ssml-speak",
+		"onCommand:extension.ssml-emphasis",
+		"onCommand:extension.ssml-paragraph",
+		"onCommand:extension.ssml-break",
+		"onCommand:extension.ssml-lang"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.ssml-speak",
+				"title": "SSML: speak"
+			},
+			{
+				"command": "extension.ssml-emphasis",
+				"title": "SSML: emphasis"
+			},
+			{
+				"command": "extension.ssml-paragraph",
+				"title": "SSML: paragraph"
+			},
+			{
+				"command": "extension.ssml-break",
+				"title": "SSML: break"
+			},
+			{
+				"command": "extension.ssml-lang",
+				"title": "SSML: lang"
+			}
+		]
+	},
+	"scripts": {
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.41.0",
+		"eslint": "^6.6.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	}
+}
