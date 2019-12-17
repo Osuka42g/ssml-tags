@@ -1,13 +1,13 @@
 {
 	"name": "ssml-tags",
 	"displayName": "SSML Tags",
-	"description": "SSML Tags helper",
+	"description": "Surround texts selection with valid SSML tags.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"Other"
+		"SSML"
 	],
 	"activationEvents": [
 		"onCommand:extension.ssml-speak",
