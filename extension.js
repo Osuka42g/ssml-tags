@@ -1,40 +1,43 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const vscode = require('vscode');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
 
+	const commands = vscode.commands;
+	const window = vscode.window;
+
 	console.log('Congratulations, your extension "ssml-tags" is now active! 🎉');
 
-	const speak = vscode.commands.registerCommand('extension.ssml-speak', function () {
+	const speak = commands.registerCommand('extension.ssml-speak', function () {
 		vscode.window.showInformationMessage('Speak');
 		surroundWith('<speak>', '</speak>');
 	});
 	context.subscriptions.push(speak);
-	const emphasis = vscode.commands.registerCommand('extension.ssml-emphasis', function () {
+	const emphasis = commands.registerCommand('extension.ssml-emphasis', function () {
 		vscode.window.showInformationMessage('Emphasis');
 		surroundWith('<emphasis>', '</emphasis>');
 	});
 	context.subscriptions.push(emphasis);
-	const paragraph = vscode.commands.registerCommand('extension.ssml-paragraph', function () {
+	const paragraph = commands.registerCommand('extension.ssml-paragraph', function () {
 		vscode.window.showInformationMessage('Paragraph');
 		surroundWith('<paragraph>', '</paragraph>');
 	});
 	context.subscriptions.push(paragraph);
-	const breakCmd = vscode.commands.registerCommand('extension.ssml-break', function () {
+	const breakCmd = commands.registerCommand('extension.ssml-break', function () {
 		vscode.window.showInformationMessage('Break');
 		surroundWith('<break>', '</break>');
 	});
 	context.subscriptions.push(breakCmd);
-	const lang = vscode.commands.registerCommand('extension.ssml-lang', function () {
+	const lang = commands.registerCommand('extension.ssml-lang', function () {
 		vscode.window.showInformationMessage('Lang');
-		surroundWith('<lang>', '</lang>');
+		const options = ['en-US', 'fr-FR', 'ru-RU', 'es-MX'];
+		presentOptions(options, function({ selection, quickPick }) {
+			surroundWith(`<lang xml:lang="${selection}">`, `</lang>`);
+			quickPick.hide();
+		});
 	});
 	context.subscriptions.push(lang);
 
@@ -48,6 +51,16 @@ function activate(context) {
 				editBuilder.replace(selection, log);
 		});
 	};
+
+	function presentOptions(options, callback) {
+		const quickPick = window.createQuickPick();
+		quickPick.items = options.map(label => ({ label }));
+		quickPick.onDidChangeSelection(selected => {
+			callback({ selection: selected[0].label, quickPick });
+		});
+		quickPick.onDidHide(() => quickPick.dispose());
+		quickPick.show();
+	}
 
 }
 exports.activate = activate;
