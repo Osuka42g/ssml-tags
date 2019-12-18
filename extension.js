@@ -1,6 +1,7 @@
 
 const vscode = require('vscode');
 const langOptions = require('./languageOptions');
+const cmds = require('./commands');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -12,34 +13,32 @@ function activate(context) {
 
 	console.log('Congratulations, your extension "ssml-tags" is now active! 🎉');
 
-	const speak = commands.registerCommand('extension.ssml-speak', function () {
-		vscode.window.showInformationMessage('Speak');
-		surroundWith('<speak>', '</speak>');
-	});
-	context.subscriptions.push(speak);
-	const emphasis = commands.registerCommand('extension.ssml-emphasis', function () {
-		vscode.window.showInformationMessage('Emphasis');
-		surroundWith('<emphasis>', '</emphasis>');
-	});
-	context.subscriptions.push(emphasis);
-	const paragraph = commands.registerCommand('extension.ssml-paragraph', function () {
-		vscode.window.showInformationMessage('Paragraph');
-		surroundWith('<paragraph>', '</paragraph>');
-	});
-	context.subscriptions.push(paragraph);
+	for (const { command, tag, close } of cmds.simple) {
+	context.subscriptions.push(
+		commands.registerCommand(command, function () {
+				surroundWith(tag, close);
+			})
+		);
+	};
+
 	const breakCmd = commands.registerCommand('extension.ssml-break', function () {
-		vscode.window.showInformationMessage('Break');
-		surroundWith('<break>', '</break>');
+		presentInputBox(function(selection) {
+			if (!selection) {
+				return;
+			}
+			surroundWith(`<break time="${selection}s" />`, '');
+		});
 	});
 	context.subscriptions.push(breakCmd);
+
 	const lang = commands.registerCommand('extension.ssml-lang', function () {
-		vscode.window.showInformationMessage('Lang');
 		presentOptions(langOptions, function({ selection, quickPick }) {
 			surroundWith(`<lang xml:lang="${selection}">`, `</lang>`);
 			quickPick.hide();
 		});
 	});
 	context.subscriptions.push(lang);
+
 
 	function surroundWith(tag, closeTag) {
 		const editor = vscode.window.activeTextEditor;
@@ -51,6 +50,14 @@ function activate(context) {
 				editBuilder.replace(selection, log);
 		});
 	};
+	
+	function presentInputBox(callback) {
+		window.showInputBox({
+			value: '',
+			placeHolder: 'time in seconds',
+			validateInput: text => Number(text) ? null : 'must be a number',
+		}).then(callback);
+	};
 
 	function presentOptions(options, callback) {
 		const quickPick = window.createQuickPick();
@@ -60,7 +67,6 @@ function activate(context) {
 		});
 		quickPick.onDidHide(() => quickPick.dispose());
 		quickPick.show();
-	}
-
+	};
 }
 exports.activate = activate;
