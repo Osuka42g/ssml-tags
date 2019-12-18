@@ -1,12 +1,10 @@
 # ssml-tags
 
+![ssml-tags gif](images/ssml-tags.gif)
+
 Speed up the format of ssml docs. Just select any text and `cmd + p` > `{command}` to surround text with propper ssml tags.
 
 Select HTML as the language for the file for more pleasure.
-
-## Features
-
-![ssml-tags gif](images/ssml-tags.gif)
 
 ## Available commands
 `SSML: speak`: Surrounds selected text with `speak` tags.
