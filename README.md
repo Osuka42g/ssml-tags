@@ -1,65 +1,33 @@
-# ssml-tags README
+# ssml-tags
 
-This is the README for your extension "ssml-tags". After writing up a brief description, we recommend including the following sections.
+Speed up the format of ssml docs. Just select any text and `cmd + p` > `{command}` to surround text with propper ssml tags.
+
+Select HTML as the language for the file for more pleasure.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+![ssml-tags gif](images/ssml-tags.gif)
 
-For example if there is an image subfolder under your extension project workspace:
+## Available commands
+`SSML: speak`: Surrounds selected text with `speak` tags.
 
-\!\[feature X\]\(images/feature-x.png\)
+`SSML: emphasis`: Surrounds selected text with `emphasis` tags.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+`SSML: paragraph`: Surrounds selected text with `p` tags.
 
-## Requirements
+`SSML: break`: Inserts single tag of break, allows to input duration in seconds.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+`SSML: lang`: Surrounds selected text with language of choice.
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+This is the first version with the very basic stuff. Basically a [POC](https://en.wikipedia.org/wiki/Proof_of_concept). But I intend to add more features and tags in the near future. 
 
-### 1.0.0
+Uses SSML Specs from [Amazon Polly](https://docs.aws.amazon.com/es_es/polly/latest/dg/supportedtags.html#lang-tag)
 
-Initial release of ...
+### 0.0.1
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release
+Support speak, break, p, emphasis, lang tags
+Support multiple selections

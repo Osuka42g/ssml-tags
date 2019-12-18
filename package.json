@@ -2,12 +2,14 @@
 	"name": "ssml-tags",
 	"displayName": "SSML Tags",
 	"description": "Surround texts selection with valid SSML tags.",
+	"repository": "https://github.com/Osuka42g/ssml-tags",
+	"publisher": "Osuka42g",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"SSML"
+		"Formatters"
 	],
 	"activationEvents": [
 		"onCommand:extension.ssml-speak",

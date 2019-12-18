@@ -1,9 +1,9 @@
 # Change Log
 
-All notable changes to the "ssml-tags" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
 
-- Initial release
+## [0.0.1] - 2018-18-12
+### Added
+- Support for multiple selections at time
+- Support speak, break, p, emphasis, lang tags.
+- Initial release.

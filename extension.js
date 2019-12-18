@@ -42,12 +42,15 @@ function activate(context) {
 
 	function surroundWith(tag, closeTag) {
 		const editor = vscode.window.activeTextEditor;
-		const selection = editor.selection;
-		const selectedText = editor.document.getText(selection);
+		const selections = editor.selections;
 
-		const log = `${tag}${selectedText}${closeTag}`
+		const selectedTexts = selections.map(s => editor.document.getText(s));
+		const logs = selectedTexts.map(s => `${tag}${s}${closeTag}`);
+
 		editor.edit(editBuilder => {
-				editBuilder.replace(selection, log);
+			for (let i = 0; i < selectedTexts.length; i++) {
+				editBuilder.replace(selections[i], logs[i]);
+			}
 		});
 	};
 	
