@@ -7,7 +7,7 @@
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"SSML"
+		"Formatters"
 	],
 	"activationEvents": [
 		"onCommand:extension.ssml-speak",
