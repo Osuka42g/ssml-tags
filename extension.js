@@ -27,6 +27,20 @@ function activate(context) {
 	});
 	context.subscriptions.push(lang);
 
+	const mark = commands.registerCommand('extension.ssml-mark', function () {
+		showInputBox(function({ selection }) {
+			selection && surroundWith(`<mark name="${selection}">`, `</mark>`);
+		});
+	});
+	context.subscriptions.push(mark);
+
+	const sub = commands.registerCommand('extension.ssml-sub', function () {
+		showInputBox(function({ selection }) {
+			selection && surroundWith(`<sub alias="${selection}">`, `</sub>`);
+		});
+	});
+	context.subscriptions.push(sub);
+
 	function surroundWith(tag, closeTag) {
 		const editor = vscode.window.activeTextEditor;
 		const selection = editor.selection;
@@ -46,6 +60,14 @@ function activate(context) {
 		});
 		quickPick.onDidHide(() => quickPick.dispose());
 		quickPick.show();
+	}
+
+	function showInputBox(callback) {
+		const quickPick = window.showInputBox().then(
+			selected => {
+				callback({ selection: selected, quickPick });
+			}
+		);
 	}
 
 }

@@ -20,8 +20,8 @@ module.exports = [
     close: '</break>',
   },
   {
-    cmd: 'extension.ssml-speak',
-    tag: '<speak>',
-    close: '</speak>',
+    cmd: 'extension.ssml-s',
+    tag: '<s>',
+    close: '</s>',
   },
 ];
