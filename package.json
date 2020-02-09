@@ -4,7 +4,7 @@
 	"description": "Surround texts selection with valid SSML tags.",
 	"repository": "https://github.com/Osuka42g/ssml-tags",
 	"publisher": "Osuka42g",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
@@ -16,7 +16,10 @@
 		"onCommand:extension.ssml-emphasis",
 		"onCommand:extension.ssml-paragraph",
 		"onCommand:extension.ssml-break",
-		"onCommand:extension.ssml-lang"
+		"onCommand:extension.ssml-lang",
+		"onCommand:extension.ssml-s",
+		"onCommand:extension.ssml-mark",
+		"onCommand:extension.ssml-sub"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -40,6 +43,18 @@
 			{
 				"command": "extension.ssml-lang",
 				"title": "SSML: lang"
+			},
+			{
+				"command": "extension.ssml-s",
+				"title": "SSML: s"
+			},
+			{
+				"command": "extension.ssml-mark",
+				"title": "SSML: mark"
+			},
+			{
+				"command": "extension.ssml-sub",
+				"title": "SSML: sub"
 			}
 		]
 	},

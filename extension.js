@@ -22,14 +22,25 @@ function activate(context) {
 	};
 
 	const breakCmd = commands.registerCommand('extension.ssml-break', function () {
-		presentInputBox(function(selection) {
-			if (!selection) {
-				return;
-			}
-			surroundWith(`<break time="${selection}s" />`, '');
+		presentInputNumberBox(function(selection) {
+			selection && surroundWith(`<break time="${selection}s" />`, '');
 		});
 	});
 	context.subscriptions.push(breakCmd);
+
+	const mark = commands.registerCommand('extension.ssml-mark', function () {
+		presentInputBox(function (selection) {
+			selection && surroundWith(`<mark name="${selection}" />`, '');
+		});
+	});
+	context.subscriptions.push(mark);
+
+	const sub = commands.registerCommand('extension.ssml-sub', function () {
+		presentInputBox(function (selection) {
+			selection && surroundWith(`<sub alias="${selection}">`, `</sub>`);
+		});
+	});
+	context.subscriptions.push(sub);
 
 	const lang = commands.registerCommand('extension.ssml-lang', function () {
 		presentOptions(langOptions, function({ selection, quickPick }) {
@@ -53,13 +64,17 @@ function activate(context) {
 			}
 		});
 	};
-	
-	function presentInputBox(callback) {
+
+	function presentInputNumberBox(callback) {
 		window.showInputBox({
 			value: '',
 			placeHolder: 'time in seconds',
 			validateInput: text => Number(text) ? null : 'must be a number',
 		}).then(callback);
+	};
+
+	function presentInputBox(callback) {
+		window.showInputBox().then(callback);
 	};
 
 	function presentOptions(options, callback) {

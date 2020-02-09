@@ -15,5 +15,10 @@ module.exports = {
 			tag: '<p>',
 			close: '</p>',
 		},
+		{
+			command: 'extension.ssml-s',
+			tag: '<s>',
+			close: '</s>',
+		},
 	],
 }

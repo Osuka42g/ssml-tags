@@ -24,6 +24,9 @@ This is the first version with the very basic stuff. Basically a [POC](https://e
 
 Uses SSML Specs from [Amazon Polly](https://docs.aws.amazon.com/es_es/polly/latest/dg/supportedtags.html#lang-tag)
 
+### [0.0.2]
+Support s, sub and mark tags.
+
 ### 0.0.1
 
 Initial release
